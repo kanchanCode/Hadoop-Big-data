@@ -515,3 +515,47 @@ Now let’s run our python files with the help of the Hadoop streaming utility a
 > -reducer /home/dikshant/Documents/reducer.py
 
 14. hdfs dfs -cat /word_count_in_python/output/part-00000
+
+
+# Hadoop Ecosystem
+
+ ARCHITECTURE
+HDFS (storage ), YARN(resource managing), MapReduce(processing)
+Master (Namenode), slaves(Datanodes)
+In HDFS modifying data is not possible. Only add or remove. 
+Reads data sequencially 
+
+
+Oozie in Hadoop -
+Oozie is a tool which will help to schedule your program 
+Process scheduling -> fair scheduler -> Queue (FIFO)
+
+CLUSTER:
+Webconsole(connect to linux)->cloudera manager (admin GUI )
+
+In HDFS we use ELT 
+- SQOOP is used to bring data from SQL /noSQL
+- Apache Flume is point to point delivery tool .It is used to take data from a source gives to destinaiton. It is majorly used for unstructured data. 
+- Flume can read the data and dump it to HDFS (It can store data anywhere) . It is pull based so it will not make any modification to the source that is why kafka is not used for this as one need to install kafka producer at the source which is not possible for the existing setup.
+- So Kafka  runs on its own cluster (by default it can store data for 7 days or you can also customize it ) . 
+- Spark streaming is utility/library which can do real time data processing. 
+Flink and Storm are other examples of real time data analysing library
+
+
+- MapReduce to process bunch files in HDFS/- MapReduce - Analyse data on top of Hadoop 
+- Pig is a scripting tool in HDFS but not used much now a days
+- Hive allows us to write SQL on the top of hadoop then it will convert it to MapReduce
+- Spark is an in-memory execution engine . It is a batch processing system and it is very fast. 
+- spark will communicate to hive to run SQL queries in hadoop
+
+- Impala, hawq,llap,presto,drill - MPP(Map parallel processing) engines (For minute queries when we need not to load whole data)
+It can run queries and scan the data by connecting to HDFS
+MPP engines are less reliable then Hive that is why it is used for minute queries only
+
+- HBase is the database of hadoop for noSQL/ realtime database.
+It has an API and can do random read and data to HDFS . 
+It gets install on HDFS and do random read and write but it has its own language/syntax.
+- Phoenix(get all the metadata and runs SQL ) and HBase in combination works well
+
+If we will take Hadoop from cloudera we will all this in one package but if we will download it from Apache we will get HDFS only
+
